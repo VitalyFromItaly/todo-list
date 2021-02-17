@@ -5,11 +5,17 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "rebuildCss": "tailwind build style.css -o css/style.css",
+    "build:css": "NODE_ENV=production tailwind build style.css -o css/style.css"
   },
   "dependencies": {
+    "autoprefixer": "^10.2.4",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "postcss": "^8.2.6",
+    "tailwindcss": "^2.0.3",
+    "vue": "^2.6.11",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
