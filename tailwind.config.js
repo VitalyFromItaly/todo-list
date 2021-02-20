@@ -1,16 +1,16 @@
 module.exports = {
-  purge: [],
-  darkMode: 'class', // or 'media' or 'class'
+  purge: ["./src/**/*.vue", "./public/index.html"],
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
       backgroundImage: {
-        'light-mobile': "url('/img/bg-mobile-light.jpg')",
-        'dark-mobile': "url('/img/bg-mobile-dark.jpg')",
-      }
+        "light-mobile": "url('/img/bg-mobile-light.jpg')",
+        "dark-mobile": "url('/img/bg-mobile-dark.jpg')",
+      },
     },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};
