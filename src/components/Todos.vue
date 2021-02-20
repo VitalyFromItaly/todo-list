@@ -1,10 +1,10 @@
 <template>
   <div
     id="todos"
-    class="relative px-5 text-sm sm:text-lg flex flex-col bg-white dark:bg-gray-900 mb-auto"
+    class="relative text-xs sm:text-lg flex flex-col bg-white dark:bg-gray-900 mb-auto"
   >
     <div
-      class="absolute -top-24 right-0 md:mx-56 lg:mx-80 left-0 mx-5  bg-white dark:bg-gray-800 flex  justify-center items-center shadow-xl rounded-lg py-3 "
+      class="absolute -top-24 right-0 mx-12 sm:mx-24 md:mx-40 lg:mx-64 left-0  bg-white dark:bg-gray-800 flex  justify-center items-center shadow-xl rounded-lg py-3 "
     >
       <button class=" focus:outline-none">
         <svg
@@ -48,7 +48,7 @@
         @showCompleted="showCompleted"
         :isAllClicked="isAllClicked"
         :isActiveClicked="isActiveClicked"
-        :isCompletedCliked="isCompletedClicked"
+        :isCompletedClicked="isCompletedClicked"
         @width="getWidth"
       />
       <button
@@ -65,7 +65,7 @@
         @showCompleted="showCompleted"
         :isAllClicked="isAllClicked"
         :isActiveClicked="isActiveClicked"
-        :isCompletedCliked="isCompletedClicked"
+        :isCompletedClicked="isCompletedClicked"
         @width="getWidth"
       />
   </div>
@@ -87,7 +87,7 @@ export default {
       isCompletedClicked: false,
       isClearClicked: false,
       newTodo: {},
-      oldOrder: null,
+      unfilteredTodos: null,
       width:null,
       todos: [
         {
@@ -113,7 +113,6 @@ export default {
       ],
     };
   },
-
   methods: {
     getWidth(value) {
       this.width = value
@@ -126,7 +125,7 @@ export default {
       this.isClearClicked = false;
       this.isAllClicked = true;
       this.isActiveClicked = false;
-      this.isCompletedCliked = false;
+      this.isCompletedClicked = false;
       return this.todos;
     },
     addTodo() {
@@ -142,10 +141,9 @@ export default {
         this.newTodo.completed = false;
         // this.todos.push(this.newTodo); // to show a new todo in the end of the list
         this.todos.splice(0, 0, this.newTodo); // if I want to show a new todo in the beggining
-        if (this.oldOrder !== null) {
-          this.oldOrder.splice(0, 0, this.newTodo);
+        if (this.unfilteredTodos !== null) {
+          this.unfilteredTodos.splice(0, 0, this.newTodo);
         }
-        // this.$set(this.todos,this.todos.length,this.newTodo)
         this.newTodo = {};
       }
     },
@@ -158,38 +156,37 @@ export default {
       if (this.isAllClicked == false) {
         this.isAllClicked = true;
         this.isActiveClicked = false;
-        this.isCompletedCliked = false;
-        this.todos = this.oldOrder;
-        this.oldOrder = null;
+        this.isCompletedClicked = false;
+        this.todos = this.unfilteredTodos;
+        this.unfilteredTodos = null;
       }
     },
     showActive() {
-      if (this.isCompletedCliked == true) {
-        this.todos = this.oldOrder;
+      if (this.isCompletedClicked == true) {
+        this.todos = this.unfilteredTodos;
       }
       this.isAllClicked = false;
       this.isActiveClicked = true;
-      this.isCompletedCliked = false;
-      this.oldOrder = this.todos;
+      this.isCompletedClicked = false;
+      this.unfilteredTodos = this.todos;
       this.todos = this.todos.filter((todo) => {
         return todo.completed == false;
       });
     },
     showCompleted() {
       if (this.isActiveClicked == true) {
-        this.todos = this.oldOrder;
+        this.todos = this.unfilteredTodos;
       }
       this.isAllClicked = false;
       this.isActiveClicked = false;
-      this.isCompletedCliked = true;
-      this.oldOrder = this.todos;
+      this.isCompletedClicked = true;
+      this.unfilteredTodos = this.todos;
       this.todos = this.todos.filter((todo) => {
         return todo.completed == true;
       });
     },
     todoDone(item) {
       item.completed = !item.completed;
-      console.log(item.completed);
       let index = this.todos.findIndex((e) => {
         return e.id == item.id;
       });
@@ -198,10 +195,17 @@ export default {
   },
   computed: {
     todoListLength() {
-      let amoutOfCompleted = this.todos.filter((e) => {
-        return e.completed == false;
-      });
-      return amoutOfCompleted.length;
+      if (this.unfilteredTodos !== null) {
+        let amoutOfOldCompleted = this.unfilteredTodos.filter((e) => {
+          return e.completed == false;
+        });
+        return amoutOfOldCompleted.length;
+      } else {
+        let amoutOfCompleted = this.todos.filter((e) => {
+          return e.completed == false;
+        });
+        return amoutOfCompleted.length; 
+      }
     },
     // todoList() {
     //   switch (true) {

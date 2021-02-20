@@ -4,9 +4,11 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "light-mobile": "url('/img/bg-mobile-light.jpg')",
-        "dark-mobile": "url('/img/bg-mobile-dark.jpg')",
-      },
+        'light-mobile': "url('/img/bg-mobile-light.jpg')",
+        'dark-mobile': "url('/img/bg-mobile-dark.jpg')",
+        'light-desktop': "url('/img/bg-desktop-light.jpg')",
+        'dark-desktop': "url('/img/bg-desktop-dark.jpg')",
+      }
     },
   },
   variants: {

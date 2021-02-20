@@ -1,8 +1,8 @@
 <template>
   <div id="v-header">
     <div
-      class="flex items-end justify-between pt-16 pb-32 px-5 md:px-56 lg:px-80 bg-no-repeat bg-cover "
-      :class="[darkThemeClicked ? 'bg-dark-mobile' : 'bg-light-mobile']"
+      class="flex items-end justify-between pt-16 pb-32 px-12 sm:px-24 md:px-40 lg:px-64 bg-no-repeat bg-cover "
+      :class="[darkThemeClicked ? 'bg-dark-mobile sm:bg-dark-desktop' : 'bg-light-mobile sm:bg-light-desktop']"
     >
       <h1
         class="uppercase text-4xl text-white font-semibold whitespace-nowrap tracking-widest"
