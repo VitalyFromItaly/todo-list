@@ -1,5 +1,5 @@
 <template>
-  <div id="filter">
+  <div>
     <div class="flex space-x-2 text-gray-400" >
       <button
         @click="$emit('showAll')"
