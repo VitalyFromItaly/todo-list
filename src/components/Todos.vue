@@ -68,7 +68,7 @@
         :isCompletedClicked="isCompletedClicked"
         @width="getWidth"
       />
-      <p style="margin: 0 auto" class=" text-sm md:text-lg text-gray-600">Drag and drop to reorder list</p>
+      <p style="margin: 0 auto" class=" text-sm md:text-lg  py-4 text-gray-600">Drag and drop to reorder list</p>
   </div>
 </template>
 <script>
