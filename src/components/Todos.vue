@@ -68,6 +68,7 @@
         :isCompletedClicked="isCompletedClicked"
         @width="getWidth"
       />
+      <p style="margin: 0 auto" class=" text-sm md:text-lg text-gray-600">Drag and drop to reorder list</p>
   </div>
 </template>
 <script>
@@ -207,8 +208,8 @@ export default {
         return amoutOfCompleted.length; 
       }
     },
-    // todoList() {
-    //   switch (true) {
+    // todoList() { // because of drag and drop component doesn't work with computed property, this is hidden and there were written more methods to 
+    //   switch (true) { // make the app work as it should. 
     //     case this.isAllClicked === true:
     //       return this.todos;
     //     case this.isActiveClicked === true:
