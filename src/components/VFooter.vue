@@ -3,9 +3,6 @@
       <p>made by VitalyFromItaly</p>
   </div>
 </template>
-
 <script>
-export default {
 
-}
 </script>
